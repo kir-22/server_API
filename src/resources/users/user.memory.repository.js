@@ -7,8 +7,8 @@ const getAll = async () => {
   return _users;
 };
 const getUser = async id => {
-  console.log('id: ', id, typeof id);
-  console.log('users: ', users);
+  // console.log('id: ', id, typeof id);
+  // console.log('users: ', users);
   const _user = users.find(items => items.id === id);
   return _user;
 };
@@ -21,6 +21,7 @@ const addUser = async user => {
 
 const updateUser = (id, user) => {
   const index = users.findIndex(item => item.id === id);
+  if (index === -1) return null;
   const _user = { id, ...user };
   users[index] = _user;
   return User.toResponse(_user);
