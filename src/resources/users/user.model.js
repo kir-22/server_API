@@ -17,6 +17,10 @@ class User {
     const { id, name, login } = user;
     return { id, name, login };
   }
+  static getId(user) {
+    user.id = uuid();
+    return user;
+  }
 }
 
 module.exports = User;
