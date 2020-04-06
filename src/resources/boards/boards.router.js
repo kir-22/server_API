@@ -4,7 +4,7 @@ const Board = require('./boards.model');
 
 router.get('/', async (req, res) => {
   const boards = await boardsService.getAll();
-  res.json(Board.toResponse(boards));
+  res.json(boards.map(Board.toResponse));
 });
 
 router.get('/:boardId', async (req, res) => {

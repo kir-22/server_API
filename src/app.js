@@ -5,7 +5,7 @@ const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const bodyParser = require('body-parser');
 const boardsRouter = require('./resources/boards/boards.router');
-// const taskRouter = require('./resources/tasks/tasks.router');
+const taskRouter = require('./resources/tasks/tasks.router');
 
 const app = express();
 
@@ -27,7 +27,6 @@ app.use('/', (req, res, next) => {
 
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
-// app.use('/boards', boardsRouter);
-// app.use('/tasks', taskRouter);
+app.use('/boards', taskRouter);
 
 module.exports = app;

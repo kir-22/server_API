@@ -1,6 +1,8 @@
 const { boards, pushBoard } = require('../../database/boards');
 const Board = require('./boards.model');
 const Column = require('./column.model');
+// const { tasks } = require('../../database/users');
+// const tasksService = require('../tasks/tasks.service');
 
 const getAll = async () => {
   const _boards = boards.map(Board.toResponse);
@@ -20,7 +22,7 @@ const addNewBoard = async board => {
   return _board;
 };
 
-const updateBoard = (id, board) => {
+const updateBoard = async (id, board) => {
   console.log('board: ', board);
   const index = boards.findIndex(item => item.id === id);
   if (index === -1) return null;
@@ -29,10 +31,13 @@ const updateBoard = (id, board) => {
   return Board.toResponse(_board);
 };
 
-const deleteBoard = id => {
+const deleteBoard = async id => {
   const index = boards.findIndex(item => item.id === id);
   if (index === -1) return null;
   boards.splice(index, 1);
+  // tasks.forEach(task => {
+  //   if (task.boardId === id) tasksService.deleteTask(id, task.id);
+  // });
   return id;
 };
 
