@@ -16,9 +16,11 @@ router.route('/:id').get(async (req, res) => {
       error: 'Пользователь ненайден',
       status: res.statusCode
     });
+
     // return res.status(404).end();
   }
   res.json(User.toResponse(user));
+  // res.send();
 });
 
 router.post('/', async (req, res, next) => {
