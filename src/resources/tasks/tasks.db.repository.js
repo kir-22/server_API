@@ -7,14 +7,14 @@ const getAll = async boardId => {
   if (!board) return null;
   // if (tasks.length === 0) return [];
   const _tasks = await Task.find({}).exec();
-  if (!_tasks) return [];
+  if (_tasks.length === 0) return [];
   return _tasks.filter(task => task.boardId === boardId);
 };
 
-const getTask = async (boardId, taskId) => {
+const getTask = async (boardId, id) => {
   const board = await boardsService.getBoard(boardId);
   if (!board) return null;
-  const task = await Task.findById(taskId);
+  const task = await Task.findById(id);
   if (!task) return null;
   if (task.boardId !== boardId) return null;
   return task;
