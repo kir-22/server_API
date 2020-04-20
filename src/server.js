@@ -1,6 +1,7 @@
 const { PORT } = require('./common/config');
 const app = require('./app');
 const { logger } = require('./common/winston.config');
+const { mongoDBConnect } = require('./database/db.client.js');
 
 process
   .on('unhandledRejection', err => {
@@ -20,6 +21,8 @@ process
     exit(1);
   });
 
-app.listen(PORT, () =>
-  console.log(`App is running on http://localhost:${PORT}`)
-);
+mongoDBConnect(() => {
+  app.listen(PORT, () =>
+    console.log(`App is running on http://localhost:${PORT}`)
+  );
+});

@@ -15,7 +15,7 @@ router.get('/:boardId', async (req, res) => {
       code: res.statusCode
     });
   }
-  res.json(board);
+  res.json(Board.toResponse(board));
 });
 
 router.post('/', async (req, res) => {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       code: res.statusCode
     });
   }
-  res.json(_board);
+  res.json(Board.toResponse(_board));
 });
 
 router.put('/:boardId', async (req, res) => {

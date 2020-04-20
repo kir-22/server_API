@@ -27,8 +27,8 @@ router.post('/', async (req, res, next) => {
   const { name, login, password } = req.body;
   if (!!name && !!login && !!password) {
     const user = await usersService.addUser(req.body);
-    // console.log('user: ', user);
-    return res.json(user);
+    console.log('user: ', user);
+    return res.json(User.toResponse(user));
   }
   next({ message: 'Request Error', code: 400 });
 });

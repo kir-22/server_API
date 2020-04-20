@@ -1,1 +1,10 @@
 {"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"12-04-2020 12:44:42"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 13:23:17"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 13:26:33"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:42:06"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:46:12"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:51:36"}
+{"message":"ErrorUnexpected token ' in JSON at position 11","statusCode":400,"method":"POST","body":{},"level":"error","label":"server.js","timestamp":"19-04-2020 14:56:26"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:57:46"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:58:29"}
+{"message":"unhandledRejection Internal ErrorInternal Error","statusCode":500,"level":"error","label":"server.js","timestamp":"19-04-2020 14:59:28"}
