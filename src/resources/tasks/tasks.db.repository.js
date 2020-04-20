@@ -1,4 +1,4 @@
-const { tasks, pushTask } = require('../../database/tasks');
+// const { tasks, pushTask } = require('../../database/tasks');
 const Task = require('./tasks.model');
 const boardsService = require('../boards/boards.service');
 
@@ -21,31 +21,25 @@ const getTask = async (boardId, taskId) => {
 };
 const addNewTask = async (boardId, task) => {
   const board = await boardsService.getBoard(boardId);
-  // Наверное нужно добавить в колумнс в борде
   if (!board) return null;
-  const _task = new Task({ ...task, boardId });
-  pushTask(_task);
+  const _task = await Task.create({ ...task, boardId });
+  console.log('_tasks -------------------->', _task);
   return _task;
 };
 const updateTask = async (boardId, taskId, task) => {
   const board = await boardsService.getBoard(boardId);
   // Наверное нужно добавить в колумнс в борде после обновления
   if (!board) return null;
-  const index = tasks.findIndex(item => item.id === taskId);
-  if (index === -1) return null;
-  const _task = { id: taskId, ...task };
-  tasks[index] = _task;
-  return _task;
+  // const index = tasks.findIndex(item => item.id === taskId);
+  const isUpdate = (await Task.updateOne({ _id: taskId }, task)).ok;
+  return isUpdate === 1 ? task : null;
 };
 const deleteTask = async (boardId, taskId) => {
   const board = await boardsService.getBoard(boardId);
-  console.log('board: ', board);
   // Наверное нужно добавить в колумнс в борде после обновления
   if (!board) return null;
-  const index = tasks.findIndex(item => item.id === taskId);
-  if (index === -1) return null;
-  tasks.splice(index, 1);
-  return taskId;
+  const isDeleted = (await Task.deleteOne({ _id: taskId })).ok;
+  return isDeleted;
 };
 
 module.exports = { getAll, getTask, addNewTask, updateTask, deleteTask };

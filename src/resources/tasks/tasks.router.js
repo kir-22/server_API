@@ -57,7 +57,7 @@ router.put('/:boardId/tasks/:taskId', async (req, res) => {
       code: res.statusCode
     });
   }
-  res.json(task);
+  res.json(Task.toResponse(task));
 });
 
 router.delete('/:boardId/tasks/:taskId', async (req, res) => {

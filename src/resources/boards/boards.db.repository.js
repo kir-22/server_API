@@ -2,7 +2,7 @@
 const Board = require('./boards.model');
 const Column = require('./column.model');
 // const { tasks } = require('../../database/users');
-// const tasksService = require('../tasks/tasks.service');
+const tasksService = require('../tasks/tasks.service');
 
 const getAll = async () => {
   const _boards = await Board.find({}).exec();
@@ -40,6 +40,11 @@ const deleteBoard = async id => {
   // //   if (task.boardId === id) tasksService.deleteTask(id, task.id);
   // // });
   // return id;
+
+  const tasks = await tasksService.getAll(id);
+  tasks.forEach(task => {
+    if (task.boardId === id) tasksService.deleteTask(id, task.id);
+  });
   const isDeleted = (await Board.deleteOne({ _id: id })).ok;
   return isDeleted;
 };
