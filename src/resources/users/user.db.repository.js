@@ -1,7 +1,5 @@
-// const { users, pushUser } = require('../../database/users');
-// const { tasks } = require('../../database/tasks');
 const Task = require('../tasks/tasks.model');
-const { updateTask } = require('../tasks/tasks.db.repository');
+
 const User = require('./user.model');
 
 const getAll = async () => {
@@ -34,27 +32,12 @@ const updateUser = async (id, user) => {
 };
 
 const onDeleteUser = async id => {
-  // const findIndex = users.findIndex(item => item.id === id);
-  // if (findIndex === -1) return false;
-  // const selectedTasks = tasks.filter(el => el.userId === id);
-  // // console.log('tasks1: ', tasks);
-  // for (const task of selectedTasks) {
-  //   await updateTask(task.boardId, task.id, { ...task, userId: null });
-  // }
-  // // console.log('tasks2: ', tasks);
-  // users.splice(findIndex, 1);
-  // return id;
-  const allTasks = await Task.find({}).exec();
-  const selectedTasks = allTasks.filter(el => el.userId === id);
-  // selectedTasks.forEach(task => {
-  //   if (task.userId === id) {
-  //     Task.updateOne(task.id, { ...task, userId: null });
-  //   }
-  // await updateTask(task.boardId, task.id, {...task, userId: null})
-  // });
-  for (const task of selectedTasks) {
-    await updateTask(task.boardId, task.id, { ...task, userId: null });
-  }
+  const allTasks = await Task.find({ userId: id });
+
+  console.log('allTasks: ', allTasks);
+  allTasks.forEach(async task => {
+    await Task.updateOne({ _id: task.id }, { userId: null });
+  });
 
   const isDelete = (await User.deleteOne({ _id: id })).ok;
   return isDelete;

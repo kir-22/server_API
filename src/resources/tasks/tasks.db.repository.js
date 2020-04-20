@@ -2,13 +2,14 @@
 const Task = require('./tasks.model');
 const boardsService = require('../boards/boards.service');
 
-const getAll = async boardId => {
-  const board = await boardsService.getBoard(boardId);
+const getAll = async id => {
+  const board = await boardsService.getBoard(id);
   if (!board) return null;
   // if (tasks.length === 0) return [];
-  const _tasks = await Task.find({}).exec();
+  const _tasks = await Task.find({ boardId: id });
+
   if (_tasks.length === 0) return [];
-  return _tasks.filter(task => task.boardId === boardId);
+  return _tasks.filter(task => task.boardId === id);
 };
 
 const getTask = async (boardId, id) => {
@@ -23,7 +24,6 @@ const addNewTask = async (boardId, task) => {
   const board = await boardsService.getBoard(boardId);
   if (!board) return null;
   const _task = await Task.create({ ...task, boardId });
-  console.log('_tasks -------------------->', _task);
   return _task;
 };
 const updateTask = async (boardId, taskId, task) => {

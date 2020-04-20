@@ -9,6 +9,7 @@ router.get('/:boardId/tasks', async (req, res) => {
       code: res.statusCode
     });
   }
+  console.log(req.params.boardId);
   const tasks = await tasksService.getAll(req.params.boardId);
   res.json(tasks.map(Task.toResponse));
 });

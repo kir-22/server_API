@@ -2,9 +2,7 @@
 const tasksRepo = require('./tasks.db.repository');
 // const boardsService = require('../boards/boards.service');
 
-const getAll = async boardId => {
-  await tasksRepo.getAll(boardId);
-};
+const getAll = async boardId => await tasksRepo.getAll(boardId);
 const getTask = async (boardId, taskId) =>
   await tasksRepo.getTask(boardId, taskId);
 const addNewTask = async (id, task) => await tasksRepo.addNewTask(id, task);
