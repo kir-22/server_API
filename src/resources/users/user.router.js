@@ -24,8 +24,9 @@ router.route('/:id').get(async (req, res) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const { name, login, password } = req.body;
-  if (!!name && !!login && !!password) {
+  const { login, password } = req.body;
+  console.log('-------->', req.body);
+  if (!!login && !!password) {
     const user = await usersService.addUser(req.body);
     console.log('user: ', user);
     return res.json(User.toResponse(user));
