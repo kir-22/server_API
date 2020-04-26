@@ -6,6 +6,7 @@ const userRouter = require('./resources/users/user.router');
 const bodyParser = require('body-parser');
 const boardsRouter = require('./resources/boards/boards.router');
 const taskRouter = require('./resources/tasks/tasks.router');
+const loginRouter = require('./resources/login/login.router');
 const {
   middlewareLoggerReq,
   middlewareErrorLogger
@@ -29,6 +30,7 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+app.use('/login', loginRouter);
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
 app.use('/boards', taskRouter);

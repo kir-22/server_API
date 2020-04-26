@@ -25,10 +25,10 @@ router.route('/:id').get(async (req, res) => {
 
 router.post('/', async (req, res, next) => {
   const { login, password } = req.body;
-  console.log('-------->', req.body);
   if (!!login && !!password) {
+    // console.log('-------->2', req.body);
     const user = await usersService.addUser(req.body);
-    console.log('user: ', user);
+    // console.log('user: ', user);
     return res.json(User.toResponse(user));
   }
   next({ message: 'Request Error', code: 400 });
