@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const boardsRouter = require('./resources/boards/boards.router');
 const taskRouter = require('./resources/tasks/tasks.router');
 const loginRouter = require('./resources/login/login.router');
+const checkToken = require('./common/checkToken');
 const {
   middlewareLoggerReq,
   middlewareErrorLogger
@@ -29,6 +30,8 @@ app.use('/', (req, res, next) => {
   }
   next();
 });
+
+app.use(checkToken);
 
 app.use('/login', loginRouter);
 app.use('/users', userRouter);
